@@ -65,8 +65,11 @@
 @section('style')
 <style>
     main {
-        background-color: #FBF7ED;
-        height: 95%;
+
+    }
+
+    .text-danger {
+        padding: 0px 140px;
     }
 
     .editar_usuario__header {

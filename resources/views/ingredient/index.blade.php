@@ -16,6 +16,16 @@
         line-height: 120%;
         padding: 20px 0px 20px 50px;
     }
+
+    .ingrediente__error {
+        color: #b94520;
+        padding: 0 50px;
+    }
+
+    .ingrediente__success {
+        color: #7db920;
+        padding: 0 50px;
+    }
     .formulario{
         background-color: #fff;
         border-radius: 4px;
@@ -57,11 +67,11 @@
     <h1 class="titulo__header">Ingredientes</h1>
 
     @if(session('error'))
-        <p>{{session('error')}}</p>
+        <p class="ingrediente__error">{{session('error')}}</p>
     @endif
 
     @if(session('success'))
-        <p>{{session('success')}}</p>
+        <p class="ingrediente__success">{{session('success')}}</p>
     @endif
 
     @foreach ($ingredients as $ingredient)
