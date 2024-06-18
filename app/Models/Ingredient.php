@@ -14,8 +14,13 @@ class Ingredient extends Model
         'description',
     ];
 
-    public function ingredient_recipes()
+    public function recipes()
     {
-        return $this->hasMany(Ingredient_recipe::class);
+        return $this->hasMany(Recipe::class);
+    }
+
+    public function ingredientRecipes()
+    {
+        return $this->hasMany(IngredientRecipe::class);
     }
 }

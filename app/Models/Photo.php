@@ -11,11 +11,17 @@ class Photo extends Model
 
     protected $fillable = [
         'recipe_id',
-        'path',
+        'user_id',
+        'name'
     ];
 
     public function recipe()
     {
-        return $this->hasOne(Recipe::class);
+        return $this->belongsTo(Recipe::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

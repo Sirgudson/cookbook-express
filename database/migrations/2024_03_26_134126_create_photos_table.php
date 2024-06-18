@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->string('path');
-            $table->foreignId('recipe_id');
+            $table->string('name');
+            $table->foreignId('recipe_id')->nullable();
+            $table->foreignId('user_id')->nullable();
             $table->timestamps();
         });
     }

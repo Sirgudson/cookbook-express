@@ -27,7 +27,6 @@
 
                 <section class="login__box-form">
                     <div class="login__box-form-data w-full sm:max-w-md px-6 py-4 overflow-hidden sm:rounded-lg z-10">
-                        <h2 class="login__box-form-title">Faça seu login</h2>
                         {{ $slot }}
                     </div>
                 </section>

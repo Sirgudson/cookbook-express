@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('isbn')->unique();
-            $table->date('published_at');
+            $table->date('published_at')->nullable();
             $table->foreignId('employee_id')->constrained();
             $table->timestamps();
         });

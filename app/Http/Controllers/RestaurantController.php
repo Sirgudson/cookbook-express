@@ -29,6 +29,17 @@ class RestaurantController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $restaurants = Restaurant::all();
+        foreach($restaurants as $restaurant) {
+            if($restaurant->name === $request->name) {
+                return redirect()->back()->with('error', 'Já existe um restaurante com o nome "'.$request->name.'"!');
+            }
+        }
+
         Restaurant::create([
             'name'=> $request->name
         ]);

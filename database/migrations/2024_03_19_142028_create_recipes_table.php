@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('employee_id')->constrained();
-            $table->date('creation_date');
             $table->decimal('portions');
             $table->foreignId('category_id')->constrained();
             $table->boolean('published')->default(false);

@@ -28,9 +28,9 @@ class Recipe extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function ingredient_recipes()
+    public function ingredients()
     {
-        return $this->hasMany(Ingredient_recipe::class);
+        return $this->hasMany(Ingredient::class);
     }
 
     public function tastings()
@@ -46,5 +46,10 @@ class Recipe extends Model
     public function photos()
     {
         return $this->hasMany(Photo::class);
+    }
+
+    public function ingredientRecipes()
+    {
+        return $this->hasMany(IngredientRecipe::class);
     }
 }

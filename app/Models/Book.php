@@ -13,15 +13,16 @@ class Book extends Model
         'title',
         'isbn',
         'published_at',
+        'employee_id',
     ];
 
-    public function publication()
+    public function publications()
     {
-        return $this->belongsTo(Publication::class);
+        return $this->hasMany(Publication::class);
     }
 
-    public function publisher()
+    public function employee()
     {
-        return $this->hasOne(Employee::class, 'employee_id', 'id');
+        return $this->belongsTo(Employee::class);
     }
 }

@@ -82,10 +82,11 @@
 }
 
 .login__box_logo-data {
-    max-width: 310px;
+    max-width: 380px;
     position: relative;
     width: 100%;
     z-index: 2;
+    margin: auto;
 }
 
 @media screen and (max-width: 1290px) {
@@ -93,6 +94,14 @@
         margin: auto;
         width: 90%;
     }
+}
+
+input#email, input#password {
+    border-color: var(--firt-color) !important;
+}
+
+.focus\:ring-indigo-500:focus {
+    --tw-ring-color: var(--firt-color) !important;
 }
 
 .login__box-form {
@@ -116,3 +125,32 @@
         width: 90%;
     }
 }
+
+input:focus {
+    outline: none;
+}
+
+input:focus-visible {
+    border: 1px solid var(--firt-color) !important; 
+}
+
+.bt4r {
+    border-radius: 34px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background-color: var(--firt-color);
+    color: white;
+    font-size: 1.2rem;
+}
+
+.box-btn { 
+    flex-direction: column-reverse;
+}
+
+.box-btn--register {
+    padding-top: 10px;
+}
+

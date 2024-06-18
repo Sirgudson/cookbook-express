@@ -12,7 +12,9 @@ class MeasureController extends Controller
      */
     public function index()
     {
-        //
+        return view('measure.index', [
+            'measures' => Measure::all()
+        ]);
     }
 
     /**
@@ -28,7 +30,22 @@ class MeasureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $measures = Measure::all();
+        foreach($measures as $measure) {
+            if($measure->name === $request->name) {
+                return redirect()->route('measure.index')->with('error', 'A medida "'.$request->name.'" já foi cadastrada!');
+            }
+        }
+
+        Measure::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('measure.index');
     }
 
     /**
@@ -58,8 +75,16 @@ class MeasureController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Measure $measure)
+    public function delete(Request $request)
     {
-        //
+        $measure = Measure::find($request->id);
+
+        if($measure->ingredientRecipes->count() > 0) {
+            return redirect()->route('measure.index')->with('error', 'A medida não pode ser deletada porque possui receitas associadas.');
+        }
+
+        $measure->delete();
+
+        return redirect()->route('measure.index');
     }
 }

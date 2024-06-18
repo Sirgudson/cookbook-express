@@ -12,7 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('category.index', [
+            'categories' => Category::all()
+        ]);
     }
 
     /**
@@ -28,7 +30,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $categories = Category::all();
+        foreach($categories as $category) {
+            if($category->name === $request->name) {
+                return redirect()->route('category.index')->with('error', 'Já existe uma categoria com o nome "'.$request->name.'"!');
+            }
+        }
+
+        Category::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -52,14 +69,38 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255'
+        ]);
+
+        $categories = Category::all();
+        foreach($categories as $category) {
+            if($category->name === $request->name) {
+                return redirect()->route('category.index')->with('error', 'Já existe uma categoria com o nome "'.$request->name.'"!');
+            }
+        }
+
+        $category = Category::find($request->id);
+        $category->update([
+            'name' => $request->name
+        ]);
+
+        return redirect()->route('category.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function delete(Request $request)
     {
-        //
+        $category = Category::find($request->id);
+
+        if($category->recipes->count() > 0) {
+            return redirect()->route('category.index')->with('error', 'A categoria não pode ser deletada porque possui receitas associadas.');
+        }
+
+        $category->delete();
+
+        return redirect()->route('category.index');
     }
 }
